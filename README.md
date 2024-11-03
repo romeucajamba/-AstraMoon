@@ -23,7 +23,7 @@ AstraMoon Pharmaceuticals é uma empresa de biotecnologia dedicada a revoluciona
 ### 1. Clone o repositório
 Abra o terminal e execute o seguinte comando para clonar o repositório:
 ```bash
-git clone <URL do repositório>
-cd <diretório do projeto>
+git clone https://github.com/romeucajamba/AstroMoon
+cd astroMoo
 npm install
 npm run dev
