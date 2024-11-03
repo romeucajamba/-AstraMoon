@@ -18,12 +18,6 @@ interface Location {
         longitude: string;
     };
 }
-
-interface Timezone {
-    offset: string;
-    description: string;
-}
-
 interface Login {
     uuid: string;
     username: string;
