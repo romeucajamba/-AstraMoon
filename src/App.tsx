@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Input } from "./components/ui/input";
 import GridContainer from "./components/grid";
 import Header from "./components/header/header";
-import { TableDashboard } from "./components/Table/table";
+import TableDashboard from "@/components/Table/table";
 import Pagination from "./components/pagination/pagination";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { PatientService } from "./service/get-patient";
@@ -13,10 +13,11 @@ const App = () => {
   const [searchParams] = useSearchParams();
   const page = searchParams.get("page") ? Number(searchParams.get("page")) : 1;
   const [searchTerm, setSearchTerm] = useState("");
+  const [rowsPerPage, setRowsPerPage] = useState("5")
 
   const { data: dataPatient, isLoading } = useQuery<ApiResponse>({
-    queryKey: ["get-patient", page],
-    queryFn: () => PatientService.getPatient({ page }),
+    queryKey: ["get-patient", page, rowsPerPage],
+    queryFn: () => PatientService.getPatient({ page, rowsPerPage }),
     placeholderData: keepPreviousData,
   });
 
@@ -28,8 +29,10 @@ const App = () => {
     return fullName.includes(term) || nationality.includes(term);
   }) ?? [];
 
+
   return (
-    <div className="w-full h-screen bg-zinc-950">
+   <main className="h-dvh bg-zinc-950">
+     <div className="w-full h-auto bg-zinc-950  scroll-container">
       <GridContainer className="flex flex-col gap-16">
         <Header />
         <div className="w-full h-auto flex flex-col gap-5">
@@ -40,15 +43,21 @@ const App = () => {
           <Input
             type="text"
             placeholder="Search name or nationality"
-            className="border-none bg-zinc-900 placeholder:text-zinc-200 text-slate-200"
+            className="border-none bg-zinc-900 py-3 placeholder:text-zinc-200 text-slate-200"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
           />
           <TableDashboard data={filteredResults} isLoading={isLoading}/>
-          <Pagination pages={dataPatient?.info.page ?? 0} items={dataPatient?.info.results ?? 0} page={page} />
+          <Pagination
+           pages={dataPatient?.info.page ?? 0} 
+          setRowsPerPage={setRowsPerPage} 
+          page={page} 
+          rowsPerPage={rowsPerPage}
+           />
         </div>
       </GridContainer>
     </div>
+   </main>
   );
 }
 

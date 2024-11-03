@@ -1,8 +1,8 @@
 import axios from "axios";
 
-export async function getPatient ({page}: {page: number}) {
+export async function getPatient({page, rowsPerPage}: {page: number, rowsPerPage: string}) {
     try {
-        const response = await axios.get(`https://randomuser.me/api/?page=${page}&results=5&seed=ab`);
+        const response = await axios.get(`https://randomuser.me/api/?page=${page}&results=${rowsPerPage}&seed=ab`);
 
        
         if (response.status !== 200) {

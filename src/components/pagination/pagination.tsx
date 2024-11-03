@@ -20,15 +20,15 @@ import { useSearchParams } from "react-router-dom"
 
 interface PaginationProps {
     pages: number,
-    items: number,
     page: number
+    setRowsPerPage: (value: string) => void;
+    rowsPerPage: string
 }
 
-const Pagination = ({ page,  pages }: PaginationProps) => {
+const Pagination = ({ page,  pages, setRowsPerPage, rowsPerPage }: PaginationProps) => {
     const totalItems = 200
 
     const [, setCurrentPage] = React.useState(1)
-    const [rowsPerPage, setRowsPerPage] = React.useState("10")
     const [, setSearchParams] = useSearchParams()
 
 
@@ -70,13 +70,13 @@ const Pagination = ({ page,  pages }: PaginationProps) => {
 
 
     return (
-        <div className="flex items-center justify-between px-2">
+        <div className="flex items-center justify-between px-2 py-6">
             <div className="text-sm text-zinc-700 text-muted-foreground">
-                Showing 10 of {totalItems} items
+                Showing {rowsPerPage} of {totalItems} items
             </div>
             <div className="flex items-center space-x-6">
                 <div className="flex items-center space-x-2">
-                    <span className="text-sm">Rows per page</span>
+ 
                     <Select
                         value={rowsPerPage}
                         onValueChange={(value) => {
@@ -147,4 +147,4 @@ const Pagination = ({ page,  pages }: PaginationProps) => {
     )
 }
 
-export default Pagination
+export default Pagination;

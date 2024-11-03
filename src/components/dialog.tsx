@@ -9,7 +9,7 @@ import {
 import { Result } from "@/types"
 
 
-const DialogPatient = ({ data }: { data: Result }) =>  {
+const DialogPatient = ({ data }: { data: Result }) => {
     console.log(data)
     return (
         <Dialog>
