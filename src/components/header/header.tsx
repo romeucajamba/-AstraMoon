@@ -2,8 +2,8 @@ const Header = () => {
     return (
         <div className="w-full h-auto flex  header-container justify-between items-start md:items-center py-14 border-b-2 border-zinc-800">
             <div className="flex flex-col gap-1">
-                <h1 className="text-slate-100 text-xl font-bold">My dashboard</h1>
-                <p className="text-slate-300 text-[0.8rem]">Welcome back user, let's go</p>
+                <h1 className="text-slate-100 text-xl font-bold">AstroMoo</h1>
+                <p className="text-slate-300 text-[0.8rem]">Welcome back</p>
             </div>
 
             <div className="flex  gap-6 items-start md:items-center mt-4 md:mt-0">

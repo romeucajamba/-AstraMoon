@@ -27,3 +27,4 @@ git clone https://github.com/romeucajamba/astroMoon
 cd astroMoo
 npm install
 npm run dev
+npm run test:e2e
