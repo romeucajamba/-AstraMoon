@@ -7,7 +7,7 @@ interface gridProps {
     className?: string
 }
 
-export function GridContainer({children, className}: gridProps){
+const GridContainer = ({children, className}: gridProps) => {
     const defaultClass = "w-full max-w-[60.25rem] mx-auto px-3 flex justify-between items-center"
     return(
         <div className={twMerge(defaultClass, className)}>
@@ -15,3 +15,5 @@ export function GridContainer({children, className}: gridProps){
         </div>
     )
 }
+
+export default GridContainer

@@ -1,6 +1,6 @@
 
 
-export function Header() {
+const Header = () => {
     return (
         <div className="w-full h-4 flex justify-between items-center py-14 border-b-2 border-zinc-800">
             <div className="size-auto flex flex-col gap-1">
@@ -23,3 +23,5 @@ export function Header() {
         </div>
     )
 }
+
+export default Header
