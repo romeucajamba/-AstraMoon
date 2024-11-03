@@ -7,19 +7,13 @@ import {
     TableRow,
   } from "@/components/ui/table";
 import { Button } from "../ui/button";
+import { Result } from "@/types";
+import EmptyCard from "../emply-card";
+import LoadingSpinner from "../loading-spinner";
   
-  const invoices = [
-    { invoice: "INV001", paymentStatus: "Paid", totalAmount: "$250.00", paymentMethod: "Credit Card" },
-    { invoice: "INV002", paymentStatus: "Pending", totalAmount: "$150.00", paymentMethod: "PayPal" },
-    { invoice: "INV003", paymentStatus: "Unpaid", totalAmount: "$350.00", paymentMethod: "Bank Transfer" },
-    { invoice: "INV004", paymentStatus: "Paid", totalAmount: "$450.00", paymentMethod: "Credit Card" },
-    { invoice: "INV005", paymentStatus: "Paid", totalAmount: "$550.00", paymentMethod: "PayPal" },
-    { invoice: "INV006", paymentStatus: "Pending", totalAmount: "$200.00", paymentMethod: "Bank Transfer" },
-    { invoice: "INV007", paymentStatus: "Unpaid", totalAmount: "$300.00", paymentMethod: "Credit Card" },
-  ];
-  
-  export function TableDashboard() {
+  export function TableDashboard({data, isLoading} : {data: Result[], isLoading: boolean}) {
     return (
+      <>
       <Table className="text-slate-100 mb-6">
         <TableHeader className="bg-zinc-800  rounded-t-lg">
           <TableRow className="border-none">
@@ -30,20 +24,31 @@ import { Button } from "../ui/button";
           </TableRow>
         </TableHeader>
         <TableBody>
-          {invoices.map((invoice) => (
-            <TableRow key={invoice.invoice} className="border-b  border-zinc-700 py-6 ">
-              <TableCell className="font-medium text-sm">{invoice.invoice}</TableCell>
-              <TableCell>{invoice.paymentStatus}</TableCell>
-              <TableCell>{invoice.paymentMethod}</TableCell>
+          {data && data.map((invoice) => (
+            <TableRow key={invoice.cell} className="border-b  border-zinc-700 py-6 ">
+              <TableCell className="font-medium text-sm">{invoice.name.first} {invoice.name.last}</TableCell>
+              <TableCell>{invoice.gender}</TableCell>
+              <TableCell>
+              {new Date(invoice.dob.date).toLocaleDateString("pt-PT")}
+              </TableCell>
               <TableCell className="text-right">
                 <Button className="bg-zinc-900 hover:bg-zinc-800">
                     View
                 </Button>
               </TableCell>
-            </TableRow>
+            </TableRow> 
           ))}
         </TableBody>
+        
       </Table>
+      {/* {data.length <= 0 && <EmptyCard />} */}
+      {isLoading && (
+        <div className="size-auto flex flex-col items-center">
+            <LoadingSpinner />
+               <p className='text-slate-100 text-md font-semibold'>Loading....</p>
+        </div>
+      )}
+      </>
     );
   }
   
