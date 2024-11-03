@@ -14,6 +14,7 @@ AstraMoon Pharmaceuticals é uma empresa de biotecnologia dedicada a revoluciona
   - React Query
   - ShadCN
   - Tailwind CSS
+  - Axios
 
 - **Gerenciamento de Pacotes:**
   - npm
