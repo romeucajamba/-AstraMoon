@@ -88,7 +88,7 @@ const Pagination = ({ page,  pages, setRowsPerPage, rowsPerPage }: PaginationPro
                             <SelectValue placeholder={rowsPerPage} />
                         </SelectTrigger>
                         <SelectContent side="top">
-                            {["5", "10", "20", "50", "100"].map((pageSize) => (
+                            {["5", "10", "20", "50"].map((pageSize) => (
                                 <SelectItem key={pageSize} value={pageSize} >
                                     {pageSize}
                                 </SelectItem>
@@ -134,7 +134,7 @@ const Pagination = ({ page,  pages, setRowsPerPage, rowsPerPage }: PaginationPro
                             variant="outline"
                             size="icon"
                             className="h-8 w-8 bg-zinc-900 hover:bg-zinc-800 border-none"
-                            // disabled={currentPage === totalPages}
+                            
                             onClick={lastPage}
                         >
                             <ChevronsRight className="h-4 w-4 text-slate-100" />
