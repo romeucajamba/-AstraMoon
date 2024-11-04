@@ -9,13 +9,15 @@ import {
 import { Result } from "@/types";
 import EmptyCard from "../emply-card";
 import LoadingSpinner from "../loading-spinner";
-import DialogPatient  from "../dialog";
+import DialogPatient from "../dialog";
 
-const  TableDashboard = ({ data, isLoading }: { data: Result[], isLoading: boolean }) => {
+// Definição do componente TableDashboard, que recebe dados e um estado de carregamento como props
+const TableDashboard = ({ data, isLoading }: { data: Result[], isLoading: boolean }) => {
   return (
     <>
+      {/* Renderização da tabela com estilo */}
       <Table className="text-slate-100 ">
-        <TableHeader className="bg-zinc-800  rounded-t-lg">
+        <TableHeader className="bg-zinc-800 rounded-t-lg">
           <TableRow className="border-none">
             <TableHead className=" text-md text-zinc-400">Name</TableHead>
             <TableHead className="text-md text-zinc-400">Gender</TableHead>
@@ -24,14 +26,18 @@ const  TableDashboard = ({ data, isLoading }: { data: Result[], isLoading: boole
           </TableRow>
         </TableHeader>
         <TableBody>
+          {/* Mapeamento dos dados recebidos para renderizar as linhas da tabela */}
           {data && data.map((invoice) => (
-            <TableRow key={invoice.cell} className="border-b  border-zinc-700 py-6 ">
+            <TableRow key={invoice.cell} className="border-b border-zinc-700 py-6 ">
+              {/* Exibição do nome do paciente, composto pelo primeiro e último nome */}
               <TableCell className="font-medium text-sm">{invoice.name.first} {invoice.name.last}</TableCell>
-              <TableCell>{invoice.gender}</TableCell>
+              <TableCell>{invoice.gender}</TableCell> {/* Exibição do gênero */}
               <TableCell>
+                {/* Formatação da data de nascimento para o formato "pt-PT" */}
                 {new Date(invoice.dob.date).toLocaleDateString("pt-PT")}
               </TableCell>
               <TableCell className="text-right">
+                {/* Exibição do componente DialogPatient para ações relacionadas ao paciente */}
                 <DialogPatient data={invoice} />
               </TableCell>
             </TableRow>
@@ -39,11 +45,13 @@ const  TableDashboard = ({ data, isLoading }: { data: Result[], isLoading: boole
         </TableBody>
 
       </Table>
+      {/* Exibição do EmptyCard quando não há dados e não está carregando */}
       {(!data.length && !isLoading) && <EmptyCard />}
+      {/* Exibição do spinner de carregamento quando isLoading é verdadeiro */}
       {isLoading && (
         <div className="size-auto flex flex-col items-center">
-          <LoadingSpinner />
-          <p className='text-slate-100 text-md font-semibold'>Loading....</p>
+          <LoadingSpinner /> {/* Componente de carregamento */}
+          <p className='text-slate-100 text-md font-semibold'>Loading....</p> {/* Mensagem de carregamento */}
         </div>
       )}
     </>

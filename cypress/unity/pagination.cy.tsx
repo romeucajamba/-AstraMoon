@@ -17,10 +17,12 @@ describe('Pagination Component Unit Test', () => {
       />
     );
 
+    // Verifica se o texto de exibição de itens está presente
     cy.contains('Showing 5 of 200 items').should('be.visible');
 
-    cy.get('button').contains('1').should('be.disabled'); 
-    cy.get('button').contains('>').should('not.be.disabled');
+    // Verifica se os botões de navegação estão presentes e habilitados/desabilitados conforme esperado
+    cy.get('button').contains('1').should('be.disabled'); // Botão "primeira página"
+    cy.get('button').contains('>').should('not.be.disabled'); // Botão "próxima página"
   });
 
   it('should call setRowsPerPage when a new page size is selected', () => {
@@ -33,6 +35,7 @@ describe('Pagination Component Unit Test', () => {
       />
     );
 
+    // Interage com o componente de seleção de página
     cy.get('select').select('10');
     cy.wrap(mockSetRowsPerPage).should('have.been.calledWith', '10');
   });
