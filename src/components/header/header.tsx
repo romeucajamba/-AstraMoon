@@ -3,12 +3,12 @@ const Header = () => {
         <div className="w-full h-auto flex  header-container justify-between items-start md:items-center py-14 border-b-2 border-zinc-800">
             <div className="flex flex-col gap-1">
                 <h1 className="text-slate-100 text-xl font-bold">AstroMoo</h1>
-                <p className="text-slate-300 text-[0.8rem]">Welcome back</p>
+                <span className="text-slate-300 text-[0.8rem]">Welcome back</span>
             </div>
 
             <div className="flex  gap-6 items-start md:items-center mt-4 md:mt-0">
                 <div className="flex  flex-col ">
-                    <p className="text-slate-100 text-lg font-semibold">Romeu Cajamba</p>
+                    <span className="text-slate-100 text-lg font-semibold">Romeu Cajamba</span>
                     <span className="text-zinc-600 text-right text-[0.6rem]">romeucajamba@gmail.com</span>
                 </div>
                 <div className="border-2 border-violet-500 rounded-full flex p-1 justify-center items-center">
